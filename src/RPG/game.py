@@ -22,7 +22,7 @@ class Game:
 	def key_handler(self):
 		pass
 
-	def graphics(self):
+	def graphics_handler(self):
 		pygame.display.update()
 
 	def run(self):
@@ -30,6 +30,6 @@ class Game:
 			self.event_handler()
 			self.key_handler()
 
-			self.graphics()
+			self.graphics_handler()
 
 			self.clock.tick(FPS)
