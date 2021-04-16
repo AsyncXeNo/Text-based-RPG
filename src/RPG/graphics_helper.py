@@ -26,8 +26,10 @@ class TextRenderer:
 			if len(self.requests[i]["str"]) < len(self.requests[i]["message"]):
 				self.requests[i]["str"] = self.requests[i]["message"][:len(self.requests[i]["str"])-1+self.requests[i]["speed"]] 
 			text = main_font.render(self.requests[i]["str"], True, self.requests[i]["foreground"], self.requests[i]["background"])
+			textRect = text.get_rect()
+			textRect.center = (self.requests[i]["x"], self.requests[i]["y"])
 			display.append({
 				"surface": text, 
-				"object": text.get_rect()
+				"object": textRect
 				})
 		return display
