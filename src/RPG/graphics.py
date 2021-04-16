@@ -1,18 +1,20 @@
 #graphics_helper.py
 import pygame
+import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 class TextRenderer:
-	requests = []
 	def __init__(self):
+		self.requests = []	
 		pygame.font.init()
-		main_font = pygame.font.Font('../../res/fonts/EightBitDragon-anqx.ttf', 28)
+		self.main_font = pygame.font.Font(dir_path + '/../../res/fonts/EightBitDragon-anqx.ttf', 28)
 
 	#Adds a text message to the rendering queue
 	def render(self, text:str, x:int, y:int, speed=1):
-		requests.append({
+		self.requests.append({
 			"message": text,
 			"x": x,
-			"y": y
+			"y": y,
 			"str": "",
 			"speed": speed,
 			"background": (0,0,0),
@@ -24,8 +26,8 @@ class TextRenderer:
 		display = []
 		for i in range(len(self.requests)):
 			if len(self.requests[i]["str"]) < len(self.requests[i]["message"]):
-				self.requests[i]["str"] = self.requests[i]["message"][:len(self.requests[i]["str"])-1+self.requests[i]["speed"]] 
-			text = main_font.render(self.requests[i]["str"], True, self.requests[i]["foreground"], self.requests[i]["background"])
+				self.requests[i]["str"] = self.requests[i]["message"][:len(self.requests[i]["str"])+self.requests[i]["speed"]] 
+			text = self.main_font.render(self.requests[i]["str"], True, self.requests[i]["foreground"], self.requests[i]["background"])
 			textRect = text.get_rect()
 			textRect.center = (self.requests[i]["x"], self.requests[i]["y"])
 			display.append({
