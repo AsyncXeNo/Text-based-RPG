@@ -10,7 +10,7 @@ class TextRenderer:
 
 	#Adds a text message to the rendering queue
 	def render(self, text:str, x:int, y:int, size=16, speed=0.5, static=False, foreground=(255,255,255), background=(0,0,0)):
-		font = pygame.font.Font(dir_path + '/../../res/fonts/EightBitDragon-anqx.ttf', size)
+		font = pygame.font.Font(dir_path + '/../../../res/fonts/EightBitDragon-anqx.ttf', size)
 		self.requests.append({
 			"message": text,
 			"x": x,
