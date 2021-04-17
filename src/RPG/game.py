@@ -13,9 +13,9 @@ class Game:
 		self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
 		pygame.display.set_caption(CAPTION)
 		self.image_renderer = ImageRenderer()
-		self.image1 = self.image_renderer.render_image("fish", (WIDTH//2, HEIGHT//2,), (128, 128,))
-		self.image2 = self.image_renderer.render_image("fish", ((WIDTH//2)//2, (HEIGHT//2)//2,), (64, 64,))
-		print(f'{self.image1}, {self.image2}')
+		self.image1id = self.image_renderer.render_image("fish", (WIDTH//2, HEIGHT//2,), (128, 128,))
+		self.image2id = self.image_renderer.render_image("fish", ((WIDTH//2)//2, (HEIGHT//2)//2,), (64, 64,))
+		print(f'{self.image1id}, {self.image2id}')
 		self.text_renderer = TextRenderer()
 		self.text_renderer.render(x=WIDTH//2, y=HEIGHT//2, text="Lorem Ipsum", speed=0.1, static =True)
 		self.clock = pygame.time.Clock()
@@ -28,8 +28,8 @@ class Game:
 			if event.type == TEXT_UPDATE:
 				self.text_renderer.tick()
 			if event.type == pygame.MOUSEBUTTONDOWN:
-				self.image_renderer.remove_image(self.image1)
-				self.image_renderer.remove_image(self.image2)
+				self.image_renderer.remove_image(self.image1id)
+				self.image_renderer.remove_image(self.image2id)
 
 	def key_handler(self):
 		pass
