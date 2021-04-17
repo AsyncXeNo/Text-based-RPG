@@ -8,3 +8,4 @@ FPS = 60
 
 #Events
 TEXT_UPDATE = pygame.event.custom_type() 
+IMAGE_UPDATE = pygame.event.custom_type()

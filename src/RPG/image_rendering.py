@@ -2,6 +2,9 @@ import pygame
 import copy
 import os
 
+import string
+import random
+
 pygame.init()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -10,6 +13,7 @@ img_path = dir_path + '\\..\\..\\res\\imgs\\'
 
 class ImageRenderer:
     def __init__(self):
+        self.requests = []
         self.images = {}
         self.load_images()
         self.define_rects()
@@ -46,9 +50,43 @@ class ImageRenderer:
             img_to_return["img_rect"].center = center
             return img_to_return
 
-    def render_image(self, screen, image:str, center:tuple, size:type = None):
+    def render_image(self, image:str, center:tuple, size:type = None):
         img = self.get_image(image, center=center, size=size)
-        screen.blit(img["image"], img["img_rect"])
+        
+        while True:
+            id = ''.join(random.choices(string.ascii_uppercase, k=6)) 
+            unique = True
+            for request in self.requests:
+                if request[0] == id:
+                    unique = False
+            
+            if unique:
+                break
+        
+        self.requests.append((id, img,))
+
+        return id
+
+    def get_render_requests(self):
+        display = []
+        for i in range(len(self.requests)):
+            img = self.requests[i][1]
+            display.append({
+                "surface": img["image"],
+                "object": img["img_rect"]
+            })
+        return display
+
+    def remove_image(self, id):
+        req_to_remove = None
+        for request in self.requests:
+            if request[0] == id:
+                req_to_remove = request
+        
+        if req_to_remove:
+            self.requests.remove(req_to_remove)
+        else:
+            return 'no image with this id'
 
 
 """-------------------------------------------TEST------------------------------------------------"""
