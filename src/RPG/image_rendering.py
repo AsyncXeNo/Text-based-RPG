@@ -30,28 +30,23 @@ class ImageRenderer:
         for key in self.image_keys:
             self.images[key]["img_rect"] = self.images[key]["image"].get_rect()
     
-    def get_image(self, image:str, center:tuple = None, size:tuple = None):
+    def get_image(self, image:str, center:tuple, size:tuple = None):
         img_to_return = copy.copy(self.images[image])
 
         if size:
-            if center:
-                img_to_return["image"] = pygame.transform.scale(img_to_return["image"], size)
-                img_to_return["img_rect"] = img_to_return["image"].get_rect()
-                img_to_return["img_rect"].center = center
-
-                return img_to_return
 
             img_to_return["image"] = pygame.transform.scale(img_to_return["image"], size)
+            img_to_return["img_rect"] = img_to_return["image"].get_rect()
+            img_to_return["img_rect"].center = center
+
             return img_to_return
+
         else:
-            if center:
-                img_to_return["img_rect"].center = center
-
-                return img_to_return
         
-        return img_to_return
+            img_to_return["img_rect"].center = center
+            return img_to_return
 
-    def render_image(self, screen, image:str, center:tuple = None, size:type = None):
+    def render_image(self, screen, image:str, center:tuple, size:type = None):
         img = self.get_image(image, center=center, size=size)
         screen.blit(img["image"], img["img_rect"])
 

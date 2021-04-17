@@ -2,6 +2,7 @@ import pygame
 import sys
 
 from text_rendering import *
+from image_rendering import *
 from constants import *
 
 pygame.init()
@@ -11,6 +12,7 @@ class Game:
 	def __init__(self):
 		self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
 		pygame.display.set_caption(CAPTION)
+		self.image_renderer = ImageRenderer()
 		self.text_renderer = TextRenderer()
 		self.text_renderer.render(x=WIDTH//2, y=HEIGHT//2, text="Lorem Ipsum", speed=0.1, static =True)
 		self.clock = pygame.time.Clock()
