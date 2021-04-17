@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-from graphics import *
+from text_rendering import *
 from constants import *
 
 pygame.init()
