@@ -2,8 +2,7 @@ import pygame
 import copy
 import os
 
-import string
-import random
+from utils import code_generator
 
 pygame.init()
 
@@ -54,7 +53,7 @@ class ImageRenderer:
         img = self.get_image(image, center=center, size=size)
         
         while True:
-            id = ''.join(random.choices(string.ascii_uppercase, k=6)) 
+            id = code_generator(6)
             unique = True
             for request in self.requests:
                 if request[0] == id:
@@ -85,8 +84,9 @@ class ImageRenderer:
         
         if req_to_remove:
             self.requests.remove(req_to_remove)
+            print(f'{id} removed')
         else:
-            return 'no image with this id'
+            print('no image with this id')
 
 
 """-------------------------------------------TEST------------------------------------------------"""

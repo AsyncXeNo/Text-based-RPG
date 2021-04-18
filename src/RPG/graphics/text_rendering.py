@@ -1,6 +1,9 @@
 #graphics_helper.py
 import pygame
 import os
+
+from utils import code_generator
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 class TextRenderer:
@@ -10,6 +13,18 @@ class TextRenderer:
 
 	#Adds a text message to the rendering queue
 	def render(self, text:str, x:int, y:int, size=16, speed=0.5, static=False, foreground=(255,255,255), background=(0,0,0)):
+
+		while True:
+			id = code_generator(6)
+			unique = True
+
+			for request in self.requests:
+				if request["id"] == id:
+					unique = False
+
+			if unique:
+				break
+
 		font = pygame.font.Font(dir_path + '/../../../res/fonts/EightBitDragon-anqx.ttf', size)
 		self.requests.append({
 			"message": text,
@@ -21,8 +36,11 @@ class TextRenderer:
 			"speed": speed,
 			"static": static,
 			"background": background,
-			"foreground": foreground
+			"foreground": foreground,
+			"id": id
 		})
+
+		return id
 
 	#called every text update event
 	def tick(self):
@@ -51,3 +69,15 @@ class TextRenderer:
 				"object": textRect
 				})
 		return display
+
+	def remove_request(self, id):
+		req_to_remove = None
+		for request in self.requests:
+			if request["id"] == id:
+				req_to_remove = request
+		
+		if req_to_remove:
+			self.requests.remove(req_to_remove)
+			print(f'{id} removed')
+		else:
+			print('no request with this id')
