@@ -1,8 +1,8 @@
 #constants.py
 import pygame
 
-WIDTH = 500
-HEIGHT = 600
+WIDTH = 1280
+HEIGHT = 720
 CAPTION = "Text Based RPG" # subejct to change
 FPS = 60
 
