@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+from logger import Logger
 from graphics.text_rendering import *
 from graphics.image_rendering import *
 from constants import *

@@ -7,7 +7,7 @@ from utils import code_generator
 pygame.init()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-img_path = dir_path + '\\..\\..\\..\\res\\imgs\\'
+img_path = dir_path + '/../../../res/imgs/'
 
 
 class ImageRenderer:

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "person1",
+    "dialogues" : [
+      {
+        "name": "person2",
+        "id": 0,
+        "string": "Yo",
+        "options": null,
+        "next": 1
+      },
+      {
+        "name": "person1",
+        "id": 1,
+        "string": "Wanna go to movie tonight?",
+        "options": 0,
+        "next": null
+      },
+      {
+        "name": "person2",
+        "id": 4,
+        "string": "No fuck you.",
+        "options": null,
+        "next": 2
+      },
+      {
+        "name": "person2",
+        "id": 5,
+        "string": "sure.",
+        "options": null,
+        "next": 3
+      },
+      {
+        "name": "person1",
+        "id": 2,
+        "string": "damn rude...",
+        "options": null,
+        "next": 4
+      },
+      {
+        "name": "person1",
+        "id": 3,
+        "string": "epic",
+        "options": null,
+        "next": null
+      }
+    ]
+  } 
+]
