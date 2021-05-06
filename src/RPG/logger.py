@@ -44,17 +44,10 @@ class Logger():
 
 
 	def log_neutral(self, msg):
-<<<<<<< HEAD
-		msg_style = self.styles[None]
-		msg_color = self.colors['green']
-
-		loginfo = 'NORMAL '
-=======
 		msg_style = self.styles['underline']
 		msg_color = self.colors['white']
 
 		loginfo = 'NORMAL'
->>>>>>> menu
 
 		self.display(loginfo, msg, msg_style, msg_color)
 
@@ -72,9 +65,6 @@ class Logger():
 
 		loginfo = 'ALERT'
 
-<<<<<<< HEAD
-		self.display(loginfo, msg, msg_style, msg_color)
-=======
 		self.display(loginfo, msg, msg_style, msg_color)
 
 	def log_error(self, msg):
@@ -110,4 +100,3 @@ class Logger():
 			string_to_return += letter
 
 		return string_to_return
->>>>>>> menu
