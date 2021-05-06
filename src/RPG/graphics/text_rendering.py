@@ -3,8 +3,12 @@ import pygame
 import os
 
 from utils import code_generator
+from logger import Logger
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
+logger = Logger('graphics/text_renderer.py')
+
 
 class TextRenderer:
 	def __init__(self):
@@ -12,7 +16,7 @@ class TextRenderer:
 		pygame.font.init()
 
 	#Adds a text message to the rendering queue
-	def render(self, text:str, x:int, y:int, size=16, speed=0.5, static=False, foreground=(255,255,255), background=(0,0,0)):
+	def render(self, text:str, x:int, y:int, surface, size=16, speed=0.5, static=False, foreground=(255,255,255)):
 
 		while True:
 			id = code_generator(6)
@@ -35,9 +39,9 @@ class TextRenderer:
 			"progress": 0,
 			"speed": speed,
 			"static": static,
-			"background": background,
 			"foreground": foreground,
-			"id": id
+			"id": id,
+			"surface": surface
 		})
 
 		return id
@@ -61,10 +65,12 @@ class TextRenderer:
 	def get_render_requests(self):
 		display = []
 		for i in range(len(self.requests)):
-			text = self.requests[i]["font"].render(self.requests[i]["str"], True, self.requests[i]["foreground"], self.requests[i]["background"])
+			text = self.requests[i]["font"].render(self.requests[i]["str"], True, self.requests[i]["foreground"])
 			textRect = text.get_rect()
 			textRect.center = (self.requests[i]["x"], self.requests[i]["y"])
+			blit_surface = self.requests[i]["surface"]
 			display.append({
+				"blit_surface": blit_surface,
 				"surface": text, 
 				"object": textRect
 				})
@@ -78,6 +84,13 @@ class TextRenderer:
 		
 		if req_to_remove:
 			self.requests.remove(req_to_remove)
-			print(f'{id} removed')
+			logger.log_neutral(f'{id} removed')
 		else:
-			print('no request with this id')
+			logger.log_warning('no text renders with this id')
+
+		for render in self.requests:
+			logger.log_neutral(f'text {render}')
+
+	def blit_requests(self):
+		for image in self.get_render_requests():
+			image["blit_surface"].blit(image["surface"], image["object"])
