@@ -1,7 +1,9 @@
-
 class Logger():
     
-	def __init__(self):
+	def __init__(self, path):
+
+		self.path = path
+
 		self.escape_code = '\033['
 		self.end_escape = 'm'
 
@@ -42,10 +44,17 @@ class Logger():
 
 
 	def log_neutral(self, msg):
+<<<<<<< HEAD
 		msg_style = self.styles[None]
 		msg_color = self.colors['green']
 
 		loginfo = 'NORMAL '
+=======
+		msg_style = self.styles['underline']
+		msg_color = self.colors['white']
+
+		loginfo = 'NORMAL'
+>>>>>>> menu
 
 		self.display(loginfo, msg, msg_style, msg_color)
 
@@ -63,4 +72,42 @@ class Logger():
 
 		loginfo = 'ALERT'
 
+<<<<<<< HEAD
 		self.display(loginfo, msg, msg_style, msg_color)
+=======
+		self.display(loginfo, msg, msg_style, msg_color)
+
+	def log_error(self, msg):
+		msg_style = self.styles['bold']
+		msg_color = self.colors['red']
+
+		loginfo = 'ERROR'
+
+		self.display(loginfo, msg, msg_style, msg_color)
+
+
+	# custom
+	def custom_log(self, msg, style, color, loginfo = None):
+		msg_style = self.styles[style]
+		msg_color = self.colors[color]
+
+		msg_loginfo = 'CUSTOM' if loginfo == None else loginfo
+
+		self.display(msg_loginfo, msg, msg_style, msg_color)
+
+
+	# display
+	def display(self, loginfo, msg, msg_style, msg_color):
+		print(f'{self.escape_code}{msg_style};{msg_color}{self.end_escape}[{self.convert_string(loginfo)}] [{self.convert_string(self.path)}]: {msg}{self.end}')
+
+
+	#info
+	def convert_string(self, string):
+
+		string_to_return = ''
+
+		for letter in string:
+			string_to_return += letter
+
+		return string_to_return
+>>>>>>> menu

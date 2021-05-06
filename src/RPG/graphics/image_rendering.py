@@ -3,11 +3,14 @@ import copy
 import os
 
 from utils import code_generator
+from logger import Logger
 
 pygame.init()
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 img_path = dir_path + '/../../../res/imgs/'
+
+logger = Logger('graphics/image_rendere.py')
 
 
 class ImageRenderer:
@@ -49,7 +52,7 @@ class ImageRenderer:
             img_to_return["img_rect"].center = center
             return img_to_return
 
-    def render_image(self, image:str, center:tuple, size:type = None):
+    def render_image(self, image:str, center:tuple, surface, size:tuple = None):
         img = self.get_image(image, center=center, size=size)
         
         while True:
@@ -62,7 +65,7 @@ class ImageRenderer:
             if unique:
                 break
         
-        self.requests.append((id, img,))
+        self.requests.append((id, img, surface))
 
         return id
 
@@ -70,13 +73,15 @@ class ImageRenderer:
         display = []
         for i in range(len(self.requests)):
             img = self.requests[i][1]
+            blit_surface = self.requests[i][2]
             display.append({
+                "blit_surface": blit_surface,
                 "surface": img["image"],
                 "object": img["img_rect"]
             })
         return display
 
-    def remove_image(self, id):
+    def remove_request(self, id):
         req_to_remove = None
         for request in self.requests:
             if request[0] == id:
@@ -84,9 +89,16 @@ class ImageRenderer:
         
         if req_to_remove:
             self.requests.remove(req_to_remove)
-            print(f'{id} removed')
+            logger.log_neutral(f'{id} removed')
         else:
-            print('no image with this id')
+            logger.log_warning('no image renders with this id')
+
+        for render in self.requests:
+            logger.log_neutral(f'image {render}')
+
+    def blit_requests(self):
+        for image in self.get_render_requests():
+            image["blit_surface"].blit(image["surface"], image["object"])
 
 
 """-------------------------------------------TEST------------------------------------------------"""
