@@ -30,10 +30,13 @@ class Game(object):
 
 	def event_handler(self, events):
 		for event in events:
-			
+
 			if event.type == pygame.MOUSEBUTTONDOWN:
 
 				if event.button == 1:
+					
+					logger.log_alert('Do not press left click 2 times in a row or you won\'t be able to delete the original renders. This bug exists because this is purely to test if the graphic renderers work.')
+
 					logger.log_neutral('Sending 2 fish images for rendering.')
 					self.image1id = self.application.image_renderer.render_image('fish', (self.width/2, self.height/2,), self.surface, (128, 128,))
 					self.image2id = self.application.image_renderer.render_image('fish', (((self.width/2)/2), ((self.height/2)/2)), self.surface, (64, 64,))

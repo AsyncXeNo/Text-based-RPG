@@ -48,7 +48,7 @@ class PlotRenderer: #Math plot, tho, chill
 			self.requests.remove(req_to_remove)
 			logger.log_neutral(f'{id_arg} removed')
 		else:
-			logger.log_warning('no graph with this id')
+			logger.log_warning('no graph renders with this id')
 
 	def blit_requests(self):
 		for render in self.get_render_requests():

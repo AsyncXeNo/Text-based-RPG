@@ -56,7 +56,8 @@ class Application(object):
 	def event_handler(self):
 		for event in self.events:
 			if event.type == pygame.QUIT:
-				logger.log_alert('Quitting the application.')
+				logger.log_alert('Quit all the menus too when you implement the stack.')
+				logger.log_neutral('Quitting the application.')
 				self.running = False    
 				pygame.quit()
 				sys.exit()
