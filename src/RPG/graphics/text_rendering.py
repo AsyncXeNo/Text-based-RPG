@@ -88,9 +88,6 @@ class TextRenderer:
 		else:
 			logger.log_warning('no text renders with this id')
 
-		for render in self.requests:
-			logger.log_neutral(f'text {render}')
-
 	def blit_requests(self):
 		for image in self.get_render_requests():
 			image["blit_surface"].blit(image["surface"], image["object"])

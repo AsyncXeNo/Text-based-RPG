@@ -7,6 +7,7 @@ from menus_handler import MenusHandler
 from game import Game
 from graphics.text_rendering import *
 from graphics.image_rendering import *
+from graphics.plot_rendering import *
 from constants import *
 
 logger = Logger('application.py')
@@ -30,6 +31,8 @@ class Application(object):
 		self.image_renderer = ImageRenderer()
 		logger.log_neutral('Initializing text renderer.')
 		self.text_renderer = TextRenderer()    
+		logger.log_neutral('Initializing plot renderer.')
+		self.plot_renderer = PlotRenderer()
 
 		logger.log_neutral('Initializing clock.')
 		self.clock  = pygame.time.Clock()
@@ -57,6 +60,15 @@ class Application(object):
 				self.running = False    
 				pygame.quit()
 				sys.exit()
+			
+			if event.type == TEXT_UPDATE:
+				self.text_renderer.tick()
+
+			if event.type == IMAGE_UPDATE:
+				pass
+
+			if event.type == PLOT_UPDATE:
+				pass
 
 	def run(self):
 		while self.running:
@@ -70,9 +82,11 @@ class Application(object):
 
 			pygame.event.post(pygame.event.Event(IMAGE_UPDATE))
 			pygame.event.post(pygame.event.Event(TEXT_UPDATE))
+			pygame.event.post(pygame.event.Event(PLOT_UPDATE))
 
 			self.text_renderer.blit_requests()
 			self.image_renderer.blit_requests()
+			self.plot_renderer.blit_requests()
 
 			self.clear_events()
 			pygame.display.update()

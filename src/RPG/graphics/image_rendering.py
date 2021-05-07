@@ -93,9 +93,6 @@ class ImageRenderer:
         else:
             logger.log_warning('no image renders with this id')
 
-        for render in self.requests:
-            logger.log_neutral(f'image {render}')
-
     def blit_requests(self):
         for image in self.get_render_requests():
             image["blit_surface"].blit(image["surface"], image["object"])
