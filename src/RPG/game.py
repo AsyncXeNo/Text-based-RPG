@@ -22,12 +22,12 @@ class Game:
 		freq = lambda x: (20/(2*np.pi))*x
 		print(list(map(freq,x1))[:7])
 		y1 = 5*np.sin(list(map(freq,x1)))
-		self.plot = self.plot_renderer.create_canvas(x1, y1, (400,400), (0,0))
+		self.plot = self.plot_renderer.create_canvas(x1, y1, (400,400), (0,0), self.screen)
 		x2 = np.arange(0,10, 0.01)
 		def triangle(p): return lambda x: ((4/p))*(x-((p/2)*math.floor(((2*x)/p)+(1/2))))*(-1)**(math.floor(((2*x)/p)+(1/2)))
 		trig = triangle(5)
 		y2 = np.array(list(map(trig, x2)))
-		self.plot_tan = self.plot_renderer.create_canvas(x2,y2, (400,400), (500,0))
+		self.plot_tan = self.plot_renderer.create_canvas(x2,y2, (400,400), (500,0), self.screen)
 		pygame.display.set_caption(CAPTION)
 		# self.image_renderer = ImageRenderer()
 		# self.image1id = self.image_renderer.render_image("fish", (WIDTH//2, HEIGHT//2,), (128, 128,))
@@ -55,13 +55,7 @@ class Game:
 
 	def graphics_handler(self):
 		self.screen.fill((0,0,0))
-		plot_renders = self.plot_renderer.get_render_requests()
-		# text_renders = self.text_renderer.get_render_requests()
-
-		for render in plot_renders:
-			#print(render["data"])
-			surf = pygame.image.fromstring(render["data"], render["size"], "ARGB")
-			self.screen.blit(surf, render["pos"])
+		self.plot_renderer.blit_graphs()
 
 		# image_renders = self.image_renderer.get_render_requests()
 		# for image in image_renders:
