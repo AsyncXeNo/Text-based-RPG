@@ -2,8 +2,7 @@
 import pygame
 import os
 
-from utils import code_generator
-from logger import Logger
+from utils import code_generator, Logger
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 

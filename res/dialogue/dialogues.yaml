@@ -1,0 +1,33 @@
+---
+- name: person1
+  dialogues:
+  - name: person2
+    id: 0
+    string: Yo
+    options:
+    next: 1
+  - name: person1
+    id: 1
+    string: Wanna go to movie tonight?
+    options: 0
+    next:
+  - name: person2
+    id: 4
+    string: No fuck you.
+    options:
+    next: 2
+  - name: person2
+    id: 5
+    string: sure.
+    options:
+    next: 3
+  - name: person1
+    id: 2
+    string: damn rude...
+    options:
+    next: 4
+  - name: person1
+    id: 3
+    string: epic
+    options:
+    next:

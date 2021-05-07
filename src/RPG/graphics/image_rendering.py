@@ -2,8 +2,7 @@ import pygame
 import copy
 import os
 
-from utils import code_generator
-from logger import Logger
+from utils import code_generator, Logger
 
 pygame.init()
 

@@ -8,7 +8,7 @@ from graphics.text_rendering import *
 from graphics.image_rendering import *
 from graphics.plot_rendering import *
 from constants import *
-from logger import Logger
+from utils import Logger
 
 logger = Logger('game.py')
 

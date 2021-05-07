@@ -3,10 +3,9 @@ import pygame
 import matplotlib as plot
 plot.use("Agg")
 import pylab
-import utils
 import matplotlib.backends.backend_agg as agg
 
-from logger import Logger
+from utils import code_generator, Logger
 
 logger = Logger('graphics/plot_rendering.py')
 
@@ -30,7 +29,7 @@ class PlotRenderer: #Math plot, tho, chill
 		s = canvas.get_width_height()
 		renderer = canvas.get_renderer()
 		raw_data = renderer.tostring_argb()
-		id_ =  utils.code_generator(6)
+		id_ =  code_generator(6)
 		self.requests.append({"data":raw_data, "size": s, "pos": pos, "id": id_, "surface": surface})
 		return id_
 

@@ -1,4 +1,4 @@
-from logger import Logger
+from utils import Logger
 
 logger = Logger('menus_handler.py')
 

@@ -1,0 +1,9 @@
+---
+- name: person1
+  options:
+  - id: 0
+    choices:
+    - string: no fuck you
+      dialogue: 4
+    - string: sure
+      dialogue: 5

@@ -2,7 +2,7 @@ import pygame
 import time
 import sys
 
-from logger import Logger
+from utils import Logger
 from menus_handler import MenusHandler
 from game import Game
 from graphics.text_rendering import *
