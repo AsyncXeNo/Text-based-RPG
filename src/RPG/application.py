@@ -9,6 +9,7 @@ from graphics.text_rendering import *
 from graphics.image_rendering import *
 from graphics.plot_rendering import *
 from constants import *
+from dialogue import DialogueManager
 
 logger = Logger('application.py')
 
@@ -39,6 +40,11 @@ class Application(object):
 		self.fps = FPS
 
 		self.menus_handler = MenusHandler()
+
+		# delete this later
+		logger.log_neutral('Initializing dialogue manager.')
+		self.dialogue_manager = DialogueManager()
+		#
 
 		self.events = []
 

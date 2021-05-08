@@ -2,6 +2,9 @@ import pygame
 import sys
 
 from dialogue_manager import DialogueManager
+from utils import Logger 
+
+logger = Logger('dialogue/game.py')
 
 
 class Game:
@@ -19,7 +22,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.dialogue_manager = DialogueManager()
-        print("Activated")
+        logger.log_neutral("Activated")
         self.dialogue_manager.activate()
         self.dialogue_manager.set_active_dialogue("person1")
 

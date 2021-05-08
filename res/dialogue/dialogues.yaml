@@ -25,7 +25,7 @@
     id: 2
     string: damn rude...
     options:
-    next: 4
+    next:
   - name: person1
     id: 3
     string: epic

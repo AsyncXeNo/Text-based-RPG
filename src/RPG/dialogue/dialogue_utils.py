@@ -1,13 +1,17 @@
-import json
+from yaml import load
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
-from option import Option
-from dialogue import Dialogue
+from .option import Option
+from .dialogue import Dialogue
 
-with open('data/dialogues.json') as f:
-	dialogues_object = json.load(f)
+with open('res/dialogue/dialogues.yaml') as f:
+	dialogues_object = load(f, Loader=Loader)
 
-with open('data/options.json') as f:
-	options_object = json.load(f)
+with open('res/dialogue/options.yaml') as f:
+	options_object = load(f, Loader=Loader)
 
 
 def get_options(name):
@@ -59,8 +63,3 @@ def get_dialogue(name):
 				})	
 
 	return list_of_dialogues
-
-
-for dialogue in get_dialogue('person1'):
-	#print(dialogue["dialogue"])
-	pass
