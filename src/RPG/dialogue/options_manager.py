@@ -4,7 +4,8 @@ logger = Logger('dialogue/options_manager.py')
 
 
 class OptionsManager:
-	def __init__(self):
+	def __init__(self, application):
+		self.application = application
 		self.active = False
 		self.options = []
 

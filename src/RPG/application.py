@@ -10,6 +10,7 @@ from graphics.image_rendering import *
 from graphics.plot_rendering import *
 from constants import *
 from dialogue import DialogueManager
+from dialogue import OptionsManager
 
 logger = Logger('application.py')
 
@@ -42,8 +43,11 @@ class Application(object):
 		self.menus_handler = MenusHandler()
 
 		# delete this later
+		logger.log_neutral('Initializing options manager.')
+		self.options_manager = OptionsManager(self)
+		logger.log_warning('Always initialize the options manager before the dialogue manager.')
 		logger.log_neutral('Initializing dialogue manager.')
-		self.dialogue_manager = DialogueManager()
+		self.dialogue_manager = DialogueManager(self)
 		#
 
 		self.events = []

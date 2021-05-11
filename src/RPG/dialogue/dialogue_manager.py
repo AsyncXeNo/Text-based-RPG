@@ -8,12 +8,13 @@ logger = Logger('dialogue/dialogue_manager.py')
 
 
 class DialogueManager:
-	def __init__(self):
+	def __init__(self, application):
+		self.application = application
 		self.dialogues_list = list()
 		self.current_dialogue_id = None
 		self.active = False
 
-		self.options_manager = OptionsManager()
+		self.options_manager = self.application.options_manager
 
 	def activate(self):
 		self.active = True
